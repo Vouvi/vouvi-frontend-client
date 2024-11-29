@@ -24,7 +24,7 @@ function Form() {
     setError(""); // Limpa qualquer erro anterior
 
     try {
-      const response = await axios.post("https://sua-api.com/login", {
+      const response = await axios.post("http://localhost:3000/alunos/", {
         email,
         password,
       }, { withCredentials: true }); // 'withCredentials' garante que o cookie seja enviado

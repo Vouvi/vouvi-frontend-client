@@ -21,25 +21,26 @@ function Form() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError(""); // Limpa qualquer erro anterior
+    setError("");  // Limpa qualquer erro anterior
 
     try {
-      const response = await axios.post("http://localhost:3000/alunos/", {
-        email,
-        password,
-      }, { withCredentials: true }); // 'withCredentials' garante que o cookie seja enviado
+    // Envia a requisição para o back-end com email e password
+    const response = await axios.post("http://localhost:3000/users/login", {
+      email: email,
+      password: password,
+    });
 
-      console.log("Usuário autenticado:", response.data);
+    console.log("Usuário autenticado:", response.data);
 
-      // Redireciona para a página desejada após login bem-sucedido
-      navigate("/dashboard"); // Redireciona para o dashboard ou página principal
-    } catch (err) {
-      if (err.response) {
-        setError("Login falhou: " + err.response.data.message);
-      } else {
-        setError("Erro ao conectar com o servidor.");
-      }
+    // Se a autenticação for bem-sucedida, redireciona para o dashboard
+    navigate("/profile");  // Redireciona para a página principal
+  } catch (err) {
+    if (err.response) {
+      setError("Login falhou: " + err.response.data.message);
+    } else {
+      setError("Erro ao conectar com o servidor.");
     }
+  }
   };
 
   return (

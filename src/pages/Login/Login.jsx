@@ -2,7 +2,10 @@ import PasswordInput from "../../components/Forms/PasswordInput";
 import KeepConected from "../../components/Forms/Radio";
 import bgVideo from "../../assets/videos/video-background-dark.mp4";
 
-import { useEffect } from "react";
+import axios from "axios";
+
+import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Icon } from "@iconify/react";
 
@@ -10,6 +13,34 @@ function Form() {
   useEffect(() => {
     document.getElementById("bg-video").play();
   });
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const navigate = useNavigate(); // Usando o useNavigate para redirecionar após login bem-sucedido
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError(""); // Limpa qualquer erro anterior
+
+    try {
+      const response = await axios.post("https://sua-api.com/login", {
+        email,
+        password,
+      }, { withCredentials: true }); // 'withCredentials' garante que o cookie seja enviado
+
+      console.log("Usuário autenticado:", response.data);
+
+      // Redireciona para a página desejada após login bem-sucedido
+      navigate("/dashboard"); // Redireciona para o dashboard ou página principal
+    } catch (err) {
+      if (err.response) {
+        setError("Login falhou: " + err.response.data.message);
+      } else {
+        setError("Erro ao conectar com o servidor.");
+      }
+    }
+  };
 
   return (
     <div className="m-5 flex items-center justify-center sm:h-[850px] md:h-[750px]">
@@ -24,6 +55,7 @@ function Form() {
       <form
         className="flex h-full w-[600px] flex-col justify-around gap-4 rounded-sm bg-white bg-opacity-90 p-10"
         action=""
+        onSubmit={handleSubmit}
       >
         <h1 className="text-center text-lg font-bold">Bem vindo de volta</h1>
 
@@ -37,10 +69,17 @@ function Form() {
           id="email"
           placeholder="exemplo@email.com"
           autoComplete="on"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
           required
         />
 
-        <PasswordInput />
+        <PasswordInput
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+
+        {error && <p className="text-red-500">{error}</p>}
 
         <KeepConected />
 

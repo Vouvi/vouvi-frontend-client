@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import axios from "axios";
 
 // Import components
 import CreateAccountStep1 from "./CreateAccountStep1";
@@ -118,6 +119,31 @@ function CreateAccount() {
     document.getElementById("bg-video").play();
   });
 
+  const [error, setError] = useState("");
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const user = {
+      username,
+      firstName: name,
+      lastName,
+      email,
+      password,
+      city: "Sua cidade",  // Adicione os campos necessários
+      state: "Seu estado",
+      gender: "Masculino", // Ou outro valor do formulário
+      age: 25,  // Calcule a idade conforme necessário
+    };
+
+    try {
+      const response = await axios.post("http://localhost:8080/api/auth/register", user);
+      console.log("Cadastro realizado com sucesso:", response.data);
+      // Redirecionar ou exibir mensagem de sucesso
+    } catch (err) {
+      setError("Erro no cadastro: " + err.response?.data?.message || "Erro desconhecido");
+    }
+  };
+
   return (
     <div className="m-5 flex items-center justify-center sm:h-[850px] md:h-[750px]">
       <video
@@ -132,7 +158,7 @@ function CreateAccount() {
         className="flex h-full w-[600px] flex-col justify-around gap-4 rounded-sm bg-white bg-opacity-90 p-10"
         action=""
       >
-        <h1 className="text-center text-lg font-bold">Criar uma conta</h1>
+        <h1 className="text-center text-lg font-bold" >Criar uma conta</h1>
 
         {verifyStep()}
       </form>

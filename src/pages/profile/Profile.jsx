@@ -11,7 +11,10 @@ import InsigneModal from "../../components/Modals/InsigneModal";
 import FriendsModal from "../../components/Modals/FriendsModal";
 import FriendsAddModal from "../../components/Modals/FriendAddModal";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+
+import axios from "axios";
+
 import HeaderMobile from "../../components/Header/HeaderMobile";
 
 function Profile() {
@@ -23,6 +26,14 @@ function Profile() {
   const openModal = (modalType) => setActiveModal(modalType);
   const closeModal = () => setActiveModal(null);
 
+  const [userName, setUserName] = useState(null);
+
+  useEffect(() => {
+    const userData = JSON.parse(localStorage.getItem("user"));
+    if (userData) {
+      setUserName(userData.username); // Ou qualquer campo que contenha o apelido/nome
+    }
+  }, []);
   return (
     <>
       <HeaderIntern
@@ -32,7 +43,7 @@ function Profile() {
       >
         <Settings openModal={() => openModal("settings")} />
       </HeaderIntern>
-      <Top />
+      <Top userName={userName} />
       <Mid openModal={() => openModal("insigne")} />
       <Low
         openModal={() => openModal("friends")}
@@ -51,7 +62,7 @@ function Profile() {
       {activeModal === "friendsAdd" && (
         <FriendsAddModal closeModal={closeModal} />
       )}
-      <HeaderMobile iconId={4}/>
+      <HeaderMobile iconId={4} />
     </>
   );
 }

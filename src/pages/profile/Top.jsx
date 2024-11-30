@@ -8,7 +8,7 @@ import VouviLover from "../../assets/images/vouvi-lover-md-icon.svg";
 import ProfileTags from "../../components/Cards/ProfileTags";
 import CoinCard from "../../components/Cards/CoinCard";
 
-function Top() {
+function Top({ userName, }) {
   const progressionbar = 19;
 
   return (
@@ -20,7 +20,7 @@ function Top() {
       </div>
       <div className="flex w-full flex-col items-center justify-center gap-2 font-medium text-[#252525] lg:ml-10 lg:w-[90%] lg:items-stretch xl:ml-12 2xl:ml-14 dark:text-white">
         <h1 className="text-[40px] sm:text-[50px] lg:text-[30px] xl:text-base 2xl:text-lg">
-          Ana carolina
+          {userName ? userName : "Usuário"}
         </h1>
         <div className="bg-blue-500 mt-10 xs:mt-14 w-full rounded-[15px] md:rounded-md bg-[#014085] px-4 md:px-6 lg:mt-0 lg:w-[80%]">
           <div className="flex justify-between text-right font-semibold text-[15px] xs:text-[20px] sm:text-[30px] lg:text-[21px] xl:text-[26px] 2xl:text-[32px]">

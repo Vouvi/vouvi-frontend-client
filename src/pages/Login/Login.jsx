@@ -24,23 +24,28 @@ function Form() {
     setError("");  // Limpa qualquer erro anterior
 
     try {
-    // Envia a requisição para o back-end com email e password
-    const response = await axios.post("http://localhost:3000/users/login", {
-      email: email,
-      password: password,
-    });
+      // Envia a requisição para o back-end com email e password
+      const response = await axios.post("http://localhost:3000/users/login", {
+        email: email,
+        password: password,
+      });
 
-    console.log("Usuário autenticado:", response.data);
-
-    // Se a autenticação for bem-sucedida, redireciona para o dashboard
-    navigate("/profile");  // Redireciona para a página principal
-  } catch (err) {
-    if (err.response) {
-      setError("Login falhou: login ou senha inválidos.");
-    } else {
-      setError("Erro ao conectar com o servidor.");
+      // Se a autenticação for bem-sucedida, salva os dados do usuário (pode ser no localStorage ou em um estado global)
+      if (response.data) {
+        localStorage.setItem("user", JSON.stringify(response.data)); // Armazenando no localStorage como exemplo
+        console.log("Usuário autenticado:", response.data);
+        
+        // Redireciona para a página de perfil após login bem-sucedido
+        navigate("/profile");
+      }
+    } catch (err) {
+      // Verifica se há uma resposta do servidor, caso contrário, trata o erro de conexão
+      if (err.response) {
+        setError("Login falhou: email ou senha inválidos.");
+      } else {
+        setError("Erro ao conectar com o servidor. Tente novamente mais tarde.");
+      }
     }
-  }
   };
 
   return (

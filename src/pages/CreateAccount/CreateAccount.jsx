@@ -143,6 +143,7 @@ function CreateAccount() {
     try {
       const response = await axios.post("http://localhost:3000/users/register", user);
       console.log("Cadastro realizado com sucesso:", response.data);
+      localStorage.setItem("user", JSON.stringify(response.data));
     } catch (err) {
       setError("Erro no cadastro: " + (err.response?.data || "Erro desconhecido"));
     }

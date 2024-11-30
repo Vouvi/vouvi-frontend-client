@@ -28,26 +28,25 @@ function Profile() {
 
   const [userName, setUserName] = useState(null);
 
+  // API para buscar dados do usuário
   useEffect(() => {
     const userData = JSON.parse(localStorage.getItem("user"));
     if (userData) {
-      setUserName(userData.username); // Ou qualquer campo que contenha o apelido/nome
+      setUserName(userData.username);
     }
   }, []);
 
-  const [levelUser, setLevelUser] = useState(1); 
+  const [levelUser, setLevelUser] = useState(1);
   const [xp, setXp] = useState(0);
 
   useEffect(() => {
     const userData = JSON.parse(localStorage.getItem("user"));
     if (userData) {
       setXp(userData.xp);
-      setLevelUser(Math.floor(xp / 10) + 1);
+      setLevelUser(Math.floor(xp / 100) + 1);
     }
   }, []);
 
-
-  
   return (
     <>
       <HeaderIntern
@@ -57,7 +56,12 @@ function Profile() {
       >
         <Settings openModal={() => openModal("settings")} />
       </HeaderIntern>
-      <Top userName={userName} levelUser={levelUser}/>
+      <Top
+        userName={userName}
+        levelUser={levelUser}
+        xpLeft={levelUser * 100 - xp}
+        progressionbar={(xp / (levelUser * 100)) * 100}
+      />
       <Mid openModal={() => openModal("insigne")} />
       <Low
         openModal={() => openModal("friends")}

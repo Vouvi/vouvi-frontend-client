@@ -34,6 +34,20 @@ function Profile() {
       setUserName(userData.username); // Ou qualquer campo que contenha o apelido/nome
     }
   }, []);
+
+  const [levelUser, setLevelUser] = useState(1); 
+  const [xp, setXp] = useState(0);
+
+  useEffect(() => {
+    const userData = JSON.parse(localStorage.getItem("user"));
+    if (userData) {
+      setXp(userData.xp);
+      setLevelUser(Math.floor(xp / 10) + 1);
+    }
+  }, []);
+
+
+  
   return (
     <>
       <HeaderIntern
@@ -43,7 +57,7 @@ function Profile() {
       >
         <Settings openModal={() => openModal("settings")} />
       </HeaderIntern>
-      <Top userName={userName} />
+      <Top userName={userName} levelUser={levelUser}/>
       <Mid openModal={() => openModal("insigne")} />
       <Low
         openModal={() => openModal("friends")}

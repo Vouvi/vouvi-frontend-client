@@ -2,13 +2,34 @@ import Avatar from "../../assets/images/avatar-sm-icon.svg";
 import Vicon from "../../assets/images/vcoins-icon.svg";
 
 import { Link } from "react-router-dom";
-function AvatarFull({ name, xp, vcoins }) {
+import { useState, useEffect } from "react";
+function AvatarFull({vcoins}) {
+
+  // API para buscar dados do usuário
+
+  const [userName, setUserName] = useState(null);
+  useEffect(() => {
+    const userData = JSON.parse(localStorage.getItem("user"));
+    if (userData) {
+      setUserName(userData.username);
+    }
+  }, []);
+
+  const [xp, setXp] = useState(0);
+
+  useEffect(() => {
+    const userData = JSON.parse(localStorage.getItem("user"));
+    if (userData) {
+      setXp(userData.xp);
+    }
+  }, []);
+
   return (
     <Link to="/profile">
       <div className="flex cursor-pointer items-center rounded-[60px] lg:p-[5px_11px_5px_14px] xl:p-[6px_13px_6px_16px] 2xl:p-[8px_16px_8px_20px] transition-colors duration-300 hover:bg-[#222222]/10 hover:dark:bg-[#222222]">
         <div className="mr-3 flex flex-col 2xl:leading-[1.1] lg:leading-[0.9]">
           <h1 className="text-right lg:text-[22px] xl:text-[25px] 2xl:text-[32px] font-medium text-black dark:text-white">
-            {name}
+            {userName}
           </h1>
           {/* Gambiarra dos infernos */}
           <div className="flex items-center lg:text-[17px] xl:text-[19px] 2xl:text-[24px] text-black dark:text-white">

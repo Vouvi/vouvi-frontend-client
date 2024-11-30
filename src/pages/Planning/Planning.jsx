@@ -51,7 +51,7 @@ function Planning() {
         darkMode={darkMode}
         setDarkMode={setDarkMode}
       >
-        <AvatarFull name={"Miro"} xp={"2000"} vcoins={"2000"} />
+        <AvatarFull />
       </HeaderIntern>
 
       <main className="m-auto w-11/12">

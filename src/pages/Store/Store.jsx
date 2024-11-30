@@ -19,7 +19,7 @@ function Store() {
         darkMode={darkMode}
         setDarkMode={setDarkMode}
       >
-        <AvatarFull name={"Ana Carolina"} xp={200} vcoins={928} />
+        <AvatarFull />
       </HeaderIntern>
       <Top />
       <Low />

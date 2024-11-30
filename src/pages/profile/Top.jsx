@@ -8,7 +8,7 @@ import VouviLover from "../../assets/images/vouvi-lover-md-icon.svg";
 import ProfileTags from "../../components/Cards/ProfileTags";
 import CoinCard from "../../components/Cards/CoinCard";
 
-function Top({ userName, levelUser, xpLeft, progressionbar }) {
+function Top({ userName, levelUser, xpLeft, progressionbar,vcoin }) {
 
   return (
     <section className="m-auto mt-16 flex w-[90%] flex-col items-center border-b-2 border-[#252525] pb-8 lg:pb-16 lg:mt-10 lg:flex-row xl:mt-14 dark:border-[#F5F5F442]">
@@ -49,7 +49,7 @@ function Top({ userName, levelUser, xpLeft, progressionbar }) {
               "lg:mr-5 xl:mr-8 2xl:mr-10 bg-[linear-gradient(180deg,rgba(255,77,0,0.80)_0%,rgba(255,216,46,0.80)_100%);]"
             }
             icon={Vicon}
-            title={"928"}
+            title={vcoin}
             text={"vcoins"}
           />
           <CoinCard

@@ -13,8 +13,6 @@ import FriendsAddModal from "../../components/Modals/FriendAddModal";
 
 import { useState, useEffect } from "react";
 
-import axios from "axios";
-
 import HeaderMobile from "../../components/Header/HeaderMobile";
 
 function Profile() {
@@ -26,23 +24,18 @@ function Profile() {
   const openModal = (modalType) => setActiveModal(modalType);
   const closeModal = () => setActiveModal(null);
 
-  const [userName, setUserName] = useState(null);
-
   // API para buscar dados do usuário
+  const [userName, setUserName] = useState(null);
+  const [levelUser, setLevelUser] = useState(1);
+  const [xp, setXp] = useState(0);
+  const [vcoin, setVcoin] = useState(0);
+
   useEffect(() => {
     const userData = JSON.parse(localStorage.getItem("user"));
     if (userData) {
       setUserName(userData.username);
-    }
-  }, []);
-
-  const [levelUser, setLevelUser] = useState(1);
-  const [xp, setXp] = useState(0);
-
-  useEffect(() => {
-    const userData = JSON.parse(localStorage.getItem("user"));
-    if (userData) {
       setXp(userData.xp);
+      setVcoin(userData.vcoin);
       setLevelUser(Math.floor(xp / 100) + 1);
     }
   }, []);
@@ -61,6 +54,7 @@ function Profile() {
         levelUser={levelUser}
         xpLeft={levelUser * 100 - xp}
         progressionbar={(xp / (levelUser * 100)) * 100}
+        vcoin={vcoin}
       />
       <Mid openModal={() => openModal("insigne")} />
       <Low

@@ -36,7 +36,7 @@ function Form() {
     navigate("/profile");  // Redireciona para a página principal
   } catch (err) {
     if (err.response) {
-      setError("Login falhou: " + err.response.data.message);
+      setError("Login falhou: login ou senha inválidos.");
     } else {
       setError("Erro ao conectar com o servidor.");
     }

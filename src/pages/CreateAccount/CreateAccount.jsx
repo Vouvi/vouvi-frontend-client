@@ -54,6 +54,12 @@ function CreateAccount() {
     setAge(date.getUTCFullYear() - year);
   }, [day, month, year]);
 
+  useEffect(() => {
+    if (step === 5) {
+      handleSubmit(); // Envia automaticamente o formulário quando chegar no step 5
+    }
+  }, [step]);
+
   const verifyStep = () => {
     switch (step) {
       case 1:
@@ -120,27 +126,25 @@ function CreateAccount() {
   });
 
   const [error, setError] = useState("");
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async () => {
 
     const user = {
-      username,
-      firstName: name,
-      lastName,
-      email,
-      password,
-      city: "Sua cidade",  // Adicione os campos necessários
-      state: "Seu estado",
-      gender: "Masculino", // Ou outro valor do formulário
-      age: 25,  // Calcule a idade conforme necessário
+      username: username,
+      name: name,
+      lastname: lastName,
+      email: email,
+      password: password,
+      gender: "m",
+      pronoun: pronoum,
+      cep: cep,
+      birthdate: "1999-01-01", // Exemplo, formate corretamente no front
     };
 
     try {
-      const response = await axios.post("http://localhost:8080/api/auth/register", user);
+      const response = await axios.post("http://localhost:3000/users/register", user);
       console.log("Cadastro realizado com sucesso:", response.data);
-      // Redirecionar ou exibir mensagem de sucesso
     } catch (err) {
-      setError("Erro no cadastro: " + err.response?.data?.message || "Erro desconhecido");
+      setError("Erro no cadastro: " + (err.response?.data || "Erro desconhecido"));
     }
   };
 
@@ -156,11 +160,16 @@ function CreateAccount() {
       ></video>
       <form
         className="flex h-full w-[600px] flex-col justify-around gap-4 rounded-sm bg-white bg-opacity-90 p-10"
-        action=""
       >
-        <h1 className="text-center text-lg font-bold" >Criar uma conta</h1>
+        <h1 className="text-center text-lg font-bold">Criar uma conta</h1>
 
+        {/* Exibe os passos do formulário */}
         {verifyStep()}
+
+        {/* Exibe erro, se houver */}
+        {error && <p className="text-red-500 text-center">{error}</p>}
+
+        
       </form>
     </div>
   );

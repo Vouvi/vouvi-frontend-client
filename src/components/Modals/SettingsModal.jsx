@@ -1,6 +1,6 @@
 import { Icon } from "@iconify/react";
 import { useState } from "react";
-
+import { Link } from "react-router-dom";
 function SettingsModal({ closeModal }) {
   const [ballAnimation, noBallAnimation] = useState(true);
   const BA = "translate-x-14";
@@ -9,6 +9,11 @@ function SettingsModal({ closeModal }) {
     noBallAnimation(!ballAnimation);
     document.body.classList.toggle("dark");
     setDarkMode((dm) => !dm);
+  };
+
+  const Logout = () => {
+    localStorage.clear(); 
+    sessionStorage.clear(); 
   };
 
   return (
@@ -70,17 +75,19 @@ function SettingsModal({ closeModal }) {
             ></div>
           </div>
         </div>
-        <div className="mt-32 flex cursor-pointer items-center justify-between rounded-md bg-[#E3000033] px-4 py-2 transition-colors duration-300 hover:bg-[#E300001A]">
-          <div className="flex flex-col">
-            <h1 className="text-[20px] xs:text-[25px] sm:text-[32px] font-medium dark:text-white">
-              Sair da conta
-            </h1>
-            <p className="text-[16px] xs:text-[20px] sm:text-md font-medium text-red">
-              Aqui é você que escolhe a visualização
-            </p>
+        <Link to={'/'}>
+          <div onClick={Logout} className="mt-32 flex cursor-pointer items-center justify-between rounded-md bg-[#E3000033] px-4 py-2 transition-colors duration-300 hover:bg-[#E300001A]">
+            <div className="flex flex-col">
+              <h1 className="text-[20px] xs:text-[25px] sm:text-[32px] font-medium dark:text-white">
+                Sair da conta
+              </h1>
+              <p className="text-[16px] xs:text-[20px] sm:text-md font-medium text-red">
+                Aqui é você que escolhe a visualização
+              </p>
+            </div>
+            <Icon className="text-red" icon="solar:exit-bold" width="4rem" />
           </div>
-          <Icon className="text-red" icon="solar:exit-bold" width="4rem" />
-        </div>
+        </Link>
         <p className="m-auto mt-4 text-[24px] font-semibold text-black dark:text-white">
           Versão 1.0.0 (beta)
         </p>

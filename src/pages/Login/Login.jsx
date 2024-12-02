@@ -24,13 +24,11 @@ function Form() {
     setError("");  // Limpa qualquer erro anterior
 
     try {
-      // Envia a requisição para o back-end com email e password
       const response = await axios.post("http://localhost:3000/users/login", {
         email: email,
         password: password,
       });
 
-      // Se a autenticação for bem-sucedida, salva os dados do usuário (pode ser no localStorage ou em um estado global)
       if (response.data) {
         localStorage.setItem("user", JSON.stringify(response.data)); // Armazenando no localStorage como exemplo
         console.log("Usuário autenticado:", response.data);
@@ -81,6 +79,7 @@ function Form() {
         />
 
         <PasswordInput
+          id={"password"}
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />

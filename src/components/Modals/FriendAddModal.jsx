@@ -85,7 +85,7 @@ function FriendsModal({ closeModal }) {
               vcoin={friend.vcoin}
             />
           ) : (
-            <p className="text-gray-500 text-center">Nenhum amigo encontrado</p>
+            <p className="text-gray-500 text-center dark:text-white">Nenhum amigo encontrado</p>
           )}
         </div>
       </div>

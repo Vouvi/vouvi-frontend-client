@@ -134,10 +134,10 @@ function CreateAccount() {
       lastname: lastName,
       email: email,
       password: password,
-      gender: "m",
+      gender: "m", // arrumar para pegar o valor do input
       pronoun: pronoum,
       cep: cep,
-      birthdate: "1999-01-01", // Exemplo, formate corretamente no front
+      birthdate: "1999-01-01", // Exemplo, ajustar a formatação
     };
 
     try {

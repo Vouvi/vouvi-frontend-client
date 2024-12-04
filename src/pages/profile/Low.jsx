@@ -15,25 +15,25 @@ function Low({ friends, openModal, openModal2 }) {
             <p className="mx-1">Adicionar amigo</p>
           </div>
         </div>
-        <div>
-          <Friends
+        <div className="h-[37vh]">
+        <Friends
             icon={"red"}
-            name={"Wesley rocha"}
-            level={"15"}
-            xp={"7.000"}
-            vcoin={"5.000"}
+            name={"Débora paixão"}
+            level={"999"}
+            xp={"999"}
+            vcoin={"999"}
           />
           <Friends
             icon={"blue"}
-            name={"Wesley rocha"}
-            level={"15"}
-            xp={"7.000"}
+            name={"Pipoca"}
+            level={"999"}
+            xp={"5.000"}
             vcoin={"5.000"}
           />
           <Friends
-            icon={"green"}
-            name={"Wesley rocha"}
-            level={"15"}
+            icon={"red"}
+            name={"PetiGatão"}
+            level={"999"}
             xp={"7.000"}
             vcoin={"5.000"}
           />

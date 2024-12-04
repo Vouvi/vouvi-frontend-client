@@ -7,56 +7,48 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 function InsineModal({ closeModal }) {
-  const [achievements, setAchievements] = useState([]); // Todas as conquistas
-  const [userAchievements, setUserAchievements] = useState([]); // Conquistas do usuário
-  const userId = localStorage.getItem("userId");
+  const [achievements, setAchievements] = useState([]);
+  const [userAchievements, setUserAchievements] = useState([]);
+  const userId = JSON.parse(localStorage.getItem("user")).id;
 
-  // Carregar todas as conquistas
   useEffect(() => {
     axios
       .get("http://localhost:3000/achievement")
-      .then((response) => {
-        setAchievements(response.data); // Definir todas as conquistas
-      })
-      .catch((error) => {
-        console.error("Erro ao buscar conquistas:", error);
-      });
+      .then((response) => setAchievements(response.data))
+      .catch((error) => console.error("Erro ao buscar conquistas:", error));
   }, []);
 
-  // Carregar as conquistas do usuário
   useEffect(() => {
     if (userId) {
       axios
         .get(`http://localhost:3000/achieved/${userId}`)
-        .then((response) => {
-          setUserAchievements(response.data); // Definir conquistas do usuário
-        })
-        .catch((error) => {
-          console.error("Erro ao buscar conquistas do usuário:", error);
-        });
+        .then((response) => setUserAchievements(response.data))
+        .catch((error) =>
+          console.error("Erro ao buscar conquistas do usuário:", error)
+        );
     }
   }, [userId]);
 
+  const achievementIcons = {
+    1: VouviLover,
+    2: Newbie,
+    
+  };
+
   const achievementColors = [
-    "bg-[#D3D3D3]", // Índice 0 (não usado, apenas para alinhamento)
-    "bg-[#7C20BE33]", // Índice 1: Vouvi Lover
-    "bg-[#14A90033]", // Índice 2: Iniciante Financeiro
-    "bg-[#FFD700]", // Índice 3: Explorador
-    "bg-[#FF6347]", // Índice 4: Maratonista
-    "bg-[#20B2AA]", // Índice 5: Consistente
-    "bg-[#FF8C00]", // Índice 6: Especialista
+    "bg-[#D3D3D3]",
+    "bg-[#7C20BE33]",
+    "bg-[#14A90033]",
+    "bg-[#FFD70033]",
+    "bg-[#FF634733]",
   ];
 
+  const getAchievementIcon = (achievementId) => {
+    return achievementIcons[achievementId] || Unknown;
+  };
+
   const getAchievementColor = (achievementId) => {
-    // Usando for para verificar se o usuário possui a conquista
-    for (let i = 0; i < userAchievements.length; i++) {
-      if (userAchievements[i].achievement.idAchievement === achievementId) {
-        // Se encontrar, retorna a cor correspondente
-        return achievementColors[achievementId] || "bg-[#D3D3D3]";
-      }
-    }
-    // Caso não tenha a conquista, retorna cor neutra
-    return "bg-[#D3D3D3]";
+    return achievementColors[achievementId] || "bg-[#D3D3D3]";
   };
   
   return (
@@ -85,7 +77,7 @@ function InsineModal({ closeModal }) {
                 >
                   {/* Primeira conquista */}
                   <InsigneModalCard
-                    img={VouviLover} // Ícone dinâmico pode ser colocado aqui
+                    img={getAchievementIcon(achievement.idAchievement)} // Ícone dinâmico pode ser colocado aqui
                     title={achievement.nameAchievement}
                     text={achievement.describeAchievement}
                     color={getAchievementColor(achievement.idAchievement)} // Atribui a cor com base no ID da conquista
@@ -93,11 +85,11 @@ function InsineModal({ closeModal }) {
                   {/* Verifica se existe a próxima conquista para renderizar */}
                   {achievements[index + 1] && (
                     <InsigneModalCard
-                      img={Newbie} // Ícone dinâmico pode ser colocado aqui
+                      img={getAchievementIcon(achievements[index + 1].idAchievement)} // Ícone dinâmico pode ser colocado aqui
                       title={achievements[index + 1].nameAchievement}
                       text={achievements[index + 1].describeAchievement}
                       color={getAchievementColor(
-                        achievements[index + 1].idAchievement,
+                        achievements[index + 1].idAchievement
                       )} // Atribui a cor com base no ID da conquista
                     />
                   )}

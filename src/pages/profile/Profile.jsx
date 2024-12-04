@@ -2,6 +2,8 @@ import Top from "./Top";
 import Mid from "./Mid";
 import Low from "./Low";
 
+import axios from "axios";
+
 import HeaderIntern from "../../components/Header/HeaderIntern";
 import Footer from "../../components/Footer/Footer";
 import Settings from "../../components/Header/Settings";
@@ -16,6 +18,8 @@ import { useState, useEffect } from "react";
 import HeaderMobile from "../../components/Header/HeaderMobile";
 
 function Profile() {
+  const userId = JSON.parse(localStorage.getItem("user")).id;
+
   const [darkMode, setDarkMode] = useState(
     document.body.classList.contains("dark"),
   );
@@ -40,6 +44,25 @@ function Profile() {
     }
   }, []);
 
+  const [achievements, setAchievements] = useState([]);
+  const [achievementCount, setAchievementCount] = useState(0);
+
+  useEffect(() => {
+    if (userId) {
+      axios
+        .get(`http://localhost:3000/achieved/${userId}`)
+        .then((response) => {
+          setAchievements(response.data);
+          setAchievementCount(response.data.length); // Contar as conquistas
+        })
+        .catch((error) =>
+          console.error("Erro ao buscar conquistas do usuário:", error)
+        );
+    }
+  }, [userId]);
+
+
+
   return (
     <>
       <HeaderIntern
@@ -55,12 +78,13 @@ function Profile() {
         xpLeft={levelUser * 100 - xp}
         progressionbar={(xp / (levelUser * 100)) * 100}
         vcoin={vcoin}
+        achievements={achievementCount+"/20"}
       />
       <Mid openModal={() => openModal("insigne")} />
       <Low
         openModal={() => openModal("friends")}
         openModal2={() => openModal("friendsAdd")}
-        friends={"15"}
+        friends={"3"}
       />
       <Footer />
       {activeModal === "settings" && <SettingsModal closeModal={closeModal} />}

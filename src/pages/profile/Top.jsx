@@ -8,7 +8,7 @@ import VouviLover from "../../assets/images/vouvi-lover-md-icon.svg";
 import ProfileTags from "../../components/Cards/ProfileTags";
 import CoinCard from "../../components/Cards/CoinCard";
 
-function Top({ userName, levelUser, xpLeft, progressionbar,vcoin }) {
+function Top({ userName, levelUser, xpLeft, progressionbar,vcoin,achievements }) {
 
   return (
     <section className="m-auto mt-16 flex w-[90%] flex-col items-center border-b-2 border-[#252525] pb-8 lg:pb-16 lg:mt-10 lg:flex-row xl:mt-14 dark:border-[#F5F5F442]">
@@ -56,13 +56,13 @@ function Top({ userName, levelUser, xpLeft, progressionbar,vcoin }) {
             background={{ backgroundImage: `url(${purpleBg})` }}
             color={"bg-cover bg-center"}
             icon={VouviLover}
-            title={"02/20"}
+            title={achievements}
             text={"emblemas"}
           />
         </div>
         <div className="flex flex-col gap-2 whitespace-nowrap md:gap-0 lg:gap-0">
           <div className="flex justify-center rounded-md bg-[#14A90033] px-2 py-1 font-bold text-[#14A900] sm:mt-4 text-[12px] xs:text-[16px] sm:text-[26px] md:px-4 md:py-2 lg:text-[21px] xl:text-[26px] 2xl:text-[32px]">
-            Sequência: 23 dias
+            Sequência: 1 dias
           </div>
           <div className="flex justify-center rounded-md bg-[#7C20BE33] px-2 py-1 font-bold text-primary-200 sm:mt-4 text-[12px] xs:text-[16px] sm:text-[26px] md:px-4 md:py-2 lg:text-[21px] xl:text-[26px] 2xl:text-[32px]">
             Especialista em economia

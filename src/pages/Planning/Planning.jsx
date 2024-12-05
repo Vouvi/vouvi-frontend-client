@@ -18,6 +18,9 @@ import ChooseExpenseCategory from "../../components/Modals/ChooseExpenseCategory
 import ChooseIncomeCategory from "../../components/Modals/ChooseIncomeCategory";
 import TipFromFin from "../../components/Modals/TipFromFin";
 
+import axios from "axios";
+import { useEffect } from "react";
+
 import Top from "./Top";
 import Graphics from "./Graphics";
 import Goals from "./Goals";
@@ -31,6 +34,14 @@ function Planning() {
 
   const handleClickGraphics = () => setActiveContent("graphics");
   const handleClickGoals = () => setActiveContent("goals");
+
+  const [transactions, setTransactions] = useState([]);
+  useEffect(() => {
+    axios
+      .get("http://localhost:3000/transaction")
+      .then((response) => setTransactions(response.data))
+      .catch((error) => console.error("Erro ao buscar conquistas:", error));
+  }, []);
 
   return (
     <>

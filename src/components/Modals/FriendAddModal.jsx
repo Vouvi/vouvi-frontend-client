@@ -49,6 +49,7 @@ function FriendsModal({ closeModal }) {
 
           <div className="flex items-center gap-5">
             <Icon
+              tabIndex="0"
               onClick={closeModal}
               className="relative right-[1px] cursor-pointer text-black opacity-35 dark:text-white"
               icon="carbon:close-filled"
@@ -57,7 +58,10 @@ function FriendsModal({ closeModal }) {
           </div>
         </div>
 
-        <div className="mt-5 flex justify-between rounded-md bg-[#8D8D8D33] p-2 dark:bg-[#3D3D3D4D]">
+        <div
+          tabIndex="0"
+          className="mt-5 flex justify-between rounded-md bg-[#8D8D8D33] p-2 dark:bg-[#3D3D3D4D]"
+        >
           <input
             className="w-full rounded-md bg-white bg-opacity-0 text-[24px] outline-none placeholder:text-[24px] placeholder:font-medium placeholder:text-[#02020B80] dark:text-white placeholder:dark:text-[#F5F5F44D]"
             type="text"

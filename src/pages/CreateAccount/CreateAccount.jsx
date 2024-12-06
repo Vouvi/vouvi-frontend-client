@@ -65,6 +65,7 @@ function CreateAccount() {
       case 1:
         return (
           <CreateAccountStep1
+            tabIndex="0"
             setStep={setStep}
             cep={cep}
             setCep={setCep}
@@ -77,6 +78,7 @@ function CreateAccount() {
       case 2:
         return (
           <CreateAccountStep2
+            tabIndex="0"
             setStep={setStep}
             day={day}
             setDay={setDay}
@@ -95,6 +97,7 @@ function CreateAccount() {
       case 3:
         return (
           <CreateAccountStep3
+            tabIndex="0"
             setStep={setStep}
             username={username}
             setUsername={setUsername}
@@ -107,6 +110,7 @@ function CreateAccount() {
       case 4:
         return (
           <CreateAccountStep4
+            tabIndex="0"
             setStep={setStep}
             email={email}
             setEmail={setEmail}
@@ -115,7 +119,7 @@ function CreateAccount() {
           />
         );
       case 5:
-        return <CreateAccountStep5 />;
+        return <CreateAccountStep5 tabIndex="0" />;
       default:
         break;
     }
@@ -127,7 +131,6 @@ function CreateAccount() {
 
   const [error, setError] = useState("");
   const handleSubmit = async () => {
-
     const user = {
       username: username,
       name: name,
@@ -141,11 +144,16 @@ function CreateAccount() {
     };
 
     try {
-      const response = await axios.post("http://localhost:3000/users/register", user);
+      const response = await axios.post(
+        "http://localhost:3000/users/register",
+        user,
+      );
       console.log("Cadastro realizado com sucesso:", response.data);
       localStorage.setItem("user", JSON.stringify(response.data));
     } catch (err) {
-      setError("Erro no cadastro: " + (err.response?.data || "Erro desconhecido"));
+      setError(
+        "Erro no cadastro: " + (err.response?.data || "Erro desconhecido"),
+      );
     }
   };
 
@@ -160,17 +168,18 @@ function CreateAccount() {
         id="bg-video"
       ></video>
       <form
-        className="flex h-full w-[600px] flex-col justify-around gap-4 rounded-sm bg-white bg-opacity-90 p-10"
+        className="flex h-full w-[350px] flex-col justify-around gap-4 rounded-sm bg-white bg-opacity-90 p-10 sm:w-[600px]"
+        action=""
       >
-        <h1 className="text-center text-lg font-bold">Criar uma conta</h1>
+        <h1 className="text-center text-[30px] font-bold sm:text-lg">
+          Criar uma conta
+        </h1>
 
         {/* Exibe os passos do formulário */}
         {verifyStep()}
 
         {/* Exibe erro, se houver */}
         {error && <p className="text-red-500 text-center">{error}</p>}
-
-        
       </form>
     </div>
   );

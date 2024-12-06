@@ -2,6 +2,7 @@ import { PieChart } from "@mui/x-charts";
 import PropTypes from "prop-types";
 import convertFloat from "../../utils/convertFloat";
 import { Icon } from "@iconify/react";
+import showModal from "../../utils/showModal";
 
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -9,14 +10,19 @@ import axios from "axios";
 function DailyTransaction({ description, value, type, date, iconSrc }) {
   
   return (
-    <li className="mb-2 flex justify-around rounded-md bg-white p-3 text-md dark:bg-black">
+    <li className="mb-2 flex justify-around rounded-md bg-white p-2 text-[12px] xs:text-[14px] sm:text-[18px] md:text-[16px] lg:text-[18px] xl:p-3 xl:text-[22px] 2xl:text-md dark:bg-black">
       <div className="flex items-center">
-        <Icon icon={iconSrc} className="h-12 w-12 rounded-full bg-yellow p-2" />
-        <span className="w-1/4 p-4">{description}</span>
+        <Icon
+          icon={iconSrc}
+          className="h-5 w-5 rounded-full bg-yellow p-[2px] xs:h-7 xs:w-7 xs:p-1 sm:h-10 sm:w-10 sm:p-2 md:h-8 md:w-8 md:p-1 xl:h-10 xl:w-10 xl:p-2 2xl:h-12 2xl:w-12"
+        />
+        <span className="w-1/4 p-1 md:p-2 xl:p-4">{description}</span>
       </div>
-      <span className="w-1/4 p-4">R$ {convertFloat(value)}</span>
-      <span className="w-1/4 p-4 text-center">{type}</span>
-      <span className="w-1/4 p-4">{date}</span>
+      <span className="w-1/3 p-2 px-0 text-center md:pt-2 lg:p-3 xl:p-4">
+        R$ {convertFloat(value)}
+      </span>
+      <span className="w-1/4 p-2 text-center md:p-2 lg:p-3 xl:p-4">{type}</span>
+      <span className="w-1/4 p-2 md:p-2 lg:p-3 xl:p-4">{date}</span>
     </li>
   );
 }
@@ -41,19 +47,23 @@ function Transactions() {
   const performance = 88;
 
   return (
-    <div className="mt-10 flex w-full justify-between dark:text-white">
-      <div className="w-7/12 rounded-md bg-[#888] bg-opacity-20 p-6 dark:bg-[#1B1B1B]">
-        <h3 className="w-fit rounded-xl bg-primary-200 p-2 text-md font-semibold text-white dark:bg-black">
+    <div className="mt-10 flex w-full flex-col justify-between md:flex-row dark:text-white">
+      <div className="rounded-md bg-[#888] bg-opacity-20 p-6 sm:w-full md:w-7/12 dark:bg-[#1B1B1B]">
+        <h3 className="w-fit rounded-xl bg-primary-200 p-2 text-[18px] font-semibold text-white sm:text-[3vw] md:text-[26px] lg:text-md dark:bg-black">
           Transações
         </h3>
 
         <br />
 
         <ul className="max-h-96 overflow-y-scroll">
-          <li className="mb-2 flex justify-around text-md">
+          <li className="flex justify-around text-[17px] text-md xs:mb-0 xs:text-[14px] sm:mb-2 sm:text-[16px] md:text-[20px]">
             <span className="w-1/4 p-4 text-center font-bold">Descrição</span>
-            <span className="w-1/4 p-4 text-center font-bold">Valor</span>
-            <span className="w-1/4 p-4 text-center font-bold">Tipo</span>
+            <span className="w-1/4 p-4 pl-[39px] text-center font-bold xs:pl-0 md:py-4 md:pl-10 lg:p-4">
+              Valor
+            </span>
+            <span className="w-1/4 p-4 pl-7 text-center font-bold xs:pl-0 md:py-4 md:pl-4 lg:p-4">
+              Tipo
+            </span>
             <span className="w-1/4 p-4 text-center font-bold">Data</span>
           </li>
 
@@ -70,8 +80,10 @@ function Transactions() {
         </ul>
       </div>
 
-      <div className="relative flex w-2/5 flex-col items-center rounded-md bg-[#888] bg-opacity-20 p-6 dark:bg-[#1B1B1B]">
-        <h3 className="text-lg">Desempenho Financeiro</h3>
+      <div className="relative mt-5 flex flex-col items-center rounded-md bg-[#888] bg-opacity-20 p-6 sm:w-full md:mt-0 md:w-2/5 dark:bg-[#1B1B1B]">
+        <h3 className="text-[28px] xs:text-[32px] sm:text-base md:text-base lg:text-lg">
+          Desempenho Financeiro
+        </h3>
         <PieChart
           series={[
             {
@@ -82,8 +94,10 @@ function Transactions() {
                 { id: 3, value: 20, color: "#b5179E" },
               ],
 
-              innerRadius: 150,
-              outerRadius: 180,
+              innerRadius:
+                window.innerWidth > 768 && window.innerWidth < 1024 ? 100 : 150,
+              outerRadius:
+                window.innerWidth > 768 && window.innerWidth < 1024 ? 120 : 180,
               cornerRadius: 35,
               startAngle: -90,
               endAngle: 90,
@@ -95,9 +109,15 @@ function Transactions() {
           height={300}
         />
 
-        <span className="absolute top-1/2 text-xl">{performance}%</span>
+        <span className="absolute top-1/2 text-lg md:top-[55%] md:text-lg lg:top-1/2 lg:text-xl">
+          {performance}%
+        </span>
 
-        <button className="w-4/6 rounded-md border-4 border-black py-3 text-md dark:border-white">
+        <button
+          tabIndex="0"
+          onClick={() => showModal("financial-performance")}
+          className="w-full rounded-md border-4 border-black py-3 text-md md:w-3/5 md:text-[20px] lg:w-4/6 dark:border-white"
+        >
           Saiba Mais
         </button>
       </div>

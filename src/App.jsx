@@ -9,8 +9,10 @@ import Avatar from "./pages/Avatar/Avatar";
 import Ranking from "./pages/Rank/Ranking";
 import UserReturn from "./pages/UserReturn/UserReturn";
 import Planning from "./pages/Planning/Planning";
+import Lesson1 from "./pages/Lessons/Lesson1";
 import ScrollToTop from "./utils/scrollUp";
 import { Route, Routes } from "react-router-dom";
+import Plans from "./pages/Plans/Plans";
 
 function App() {
   return (
@@ -30,6 +32,8 @@ function App() {
         <Route Component={Ranking} path="/ranking" />
         <Route Component={UserReturn} path="/user-return" />
         <Route Component={Planning} path="/planning" />
+        <Route Component={Lesson1} path="/lesson-1" />
+        <Route Component={Plans} path="/plans" />
       </Routes>
     </>
   );

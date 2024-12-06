@@ -1,4 +1,6 @@
 import { useState } from "react";
+import axios from "axios";
+import { useEffect } from "react";
 
 import HeaderMobile from "../../components/Header/HeaderMobile";
 import HeaderIntern from "../../components/Header/HeaderIntern";
@@ -8,6 +10,7 @@ import Footer from "../../components/Footer/Footer";
 // Modals
 import NewIncome from "../../components/Modals/NewIncome";
 import NewExpense from "../../components/Modals/NewExpense";
+import NewRepetition from "../../components/Modals/NewRepetition";
 import NotesModal from "../../components/Modals/NotesModal";
 import Note from "../../components/Modals/Note";
 import BudgetModal from "../../components/Modals/BudgetModal";
@@ -16,11 +19,9 @@ import BudgetDetailsEdit from "../../components/Modals/BudgetDetailsEdit";
 import ChooseAccount from "../../components/Modals/ChooseAccount";
 import ChooseExpenseCategory from "../../components/Modals/ChooseExpenseCategory";
 import ChooseIncomeCategory from "../../components/Modals/ChooseIncomeCategory";
+import FinancialMissions from "../../components/Modals/FinancialMissions";
 import TipFromFin from "../../components/Modals/TipFromFin";
-
-import axios from "axios";
-import { useEffect } from "react";
-
+import FinancialPerformance from "../../components/Modals/Financialperformance";
 import Top from "./Top";
 import Graphics from "./Graphics";
 import Goals from "./Goals";
@@ -47,6 +48,7 @@ function Planning() {
     <>
       <NewIncome />
       <NewExpense />
+      <NewRepetition />
       <NotesModal />
       <Note />
       <BudgetModal />
@@ -55,7 +57,9 @@ function Planning() {
       <ChooseAccount />
       <ChooseExpenseCategory />
       <ChooseIncomeCategory />
+      <FinancialMissions />
       <TipFromFin />
+      <FinancialPerformance />
 
       <HeaderIntern
         iconActiveNumber={1}
@@ -72,7 +76,7 @@ function Planning() {
       </main>
 
       <Footer />
-      <HeaderMobile iconId={1}/>
+      <HeaderMobile iconId={1} />
     </>
   );
 }

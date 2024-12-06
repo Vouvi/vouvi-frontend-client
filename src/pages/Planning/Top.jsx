@@ -1,10 +1,12 @@
 import { Icon } from "@iconify/react";
 import { useState } from "react";
 import convertFloat from "../../utils/convertFloat";
-
+import axios from "axios";
+import { useEffect } from "react";
 import showModal from "../../utils/showModal";
 
 function Top({ onClick, onClick2 }) {
+  const [transactions, setTransactions] = useState([]);
   const [balance, setBalance] = useState(6000);
   const [income, setIncome] = useState(2500);
   const [expense, setExpense] = useState(6021);
@@ -38,6 +40,32 @@ function Top({ onClick, onClick2 }) {
       />
     </svg>
   );
+
+  useEffect(() => {
+    axios.get('http://localhost:3000/transaction')
+      .then(response => {
+        const fetchedTransactions = response.data;
+
+        // Calcula o saldo total a partir das transações
+        const totalBalance = fetchedTransactions.reduce((sum, transaction) => sum + transaction.value, 0);
+        setBalance(totalBalance);
+
+        // Filtra as transações de entrada (positive value)
+        const totalIncome = fetchedTransactions
+          .filter(transaction => transaction.value > 0)
+          .reduce((sum, transaction) => sum + transaction.value, 0);
+        setIncome(totalIncome);
+
+        // Filtra as transações de saída (negative value)
+        const totalExpense = fetchedTransactions
+          .filter(transaction => transaction.value < 0)
+          .reduce((sum, transaction) => sum + transaction.value, 0);
+        setExpense(totalExpense);
+
+        setTransactions(fetchedTransactions);
+      })
+      .catch(error => console.error('Erro ao buscar transações:', error));
+  }, []);
 
   return (
     <div className="w-full">
@@ -99,14 +127,14 @@ function Top({ onClick, onClick2 }) {
         <div className="flex flex-col gap-2 whitespace-nowrap text-[32px] leading-[1.1]">
           <div
             onClick={() => showModal("notes-modal")}
-            className="flex cursor-pointer items-center gap-1 rounded-md bg-[#FFB51533] hover:bg-yellow hover:text-[#493A1A] transition-all duration-300 px-4 py-3 font-medium text-[#FFB515]"
+            className="flex cursor-pointer items-center gap-1 rounded-md bg-[#FFB51533] px-4 py-3 font-medium text-[#FFB515] transition-all duration-300 hover:bg-yellow hover:text-[#493A1A]"
           >
             <Icon icon="solar:notes-bold" className="" width="25px" />
             <h1 className="">Anotações livres</h1>
           </div>
           <div
             onClick={() => showModal("budget-modal")}
-            className="flex cursor-pointer items-center gap-1 rounded-md bg-[#FF48A733] hover:bg-[#FF48A7] hover:text-[#492437] transition-all duration-300 px-4 py-3 font-medium text-[#FF48A7]"
+            className="flex cursor-pointer items-center gap-1 rounded-md bg-[#FF48A733] px-4 py-3 font-medium text-[#FF48A7] transition-all duration-300 hover:bg-[#FF48A7] hover:text-[#492437]"
           >
             <Icon icon="iconoir:wallet-solid" width="25px" />
             <h1 className="">Orçamento</h1>

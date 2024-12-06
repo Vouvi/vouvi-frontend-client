@@ -76,7 +76,7 @@ function Learn() {
   return (
     <>
       <Header>
-        <AvatarBasic name={"Josefa"} />
+        <AvatarBasic />
       </Header>
 
       <main className="relative flex w-[100vw] flex-col items-center justify-center px-0 md:px-[1vw] xl:px-[7vw]">

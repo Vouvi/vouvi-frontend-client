@@ -27,10 +27,16 @@ function Transactions() {
 
   useEffect(() => {
     axios.get('http://localhost:3000/transaction')
-      .then(response => setTransactions(response.data))
+      .then(response => {
+        // Ordena as transações por data, mais recentes primeiro
+        const sortedTransactions = response.data.sort((a, b) => new Date(b.date) - new Date(a.date));
+        setTransactions(sortedTransactions);
+      })
       .catch(error => console.error('Erro ao buscar transações:', error));
-      console.log(transactions);
   }, []);
+
+  
+  
   
   const performance = 88;
 

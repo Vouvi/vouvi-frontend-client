@@ -1,6 +1,7 @@
 import Modal from "./Modal";
 import hideModal from "../../utils/hideModal";
 import { useState } from "react";
+import axios from "axios";
 
 function NewExpense() {
   const userAccounts = [
@@ -27,6 +28,28 @@ function NewExpense() {
     setDate(new Date().toISOString().split("T")[0]);
     setAccount(0);
     setCategory(0);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    const newTransaction = {
+      title: title,
+      value: -Math.abs(parseFloat(ammount)),
+      type: "Saída", // Definido como 'Saída', ou ajuste conforme necessário.
+      date: date,
+    };
+
+    axios
+      .post("http://localhost:3000/transaction/add", newTransaction)
+      .then((response) => {
+        console.log("Transação salva com sucesso:", response.data);
+        clearForm();
+        hideModal("new-income"); // Fecha o modal após a requisição.
+      })
+      .catch((error) => {
+        console.error("Erro ao salvar a transação:", error);
+      });
   };
 
   return (
@@ -123,6 +146,7 @@ function NewExpense() {
         </button>
 
         <button
+          onClick={handleSubmit}
           className={`flex w-full items-center justify-center rounded-sm bg-primary-200 p-3 font-bold text-white transition-all duration-200 hover:bg-secondary-200 hover:text-black`}
         >
           <p className="text-md">Salvar</p>

@@ -6,6 +6,8 @@ import AvatarBasic from "../../components/Header/AvatarBasic";
 
 import trailImage1 from "../../assets/images/learning-trail-1.svg";
 
+import { useState, useEffect } from "react";
+
 function Learn() {
   const stages = [
     {
@@ -73,6 +75,19 @@ function Learn() {
     },
   ];
 
+ 
+  const [levelUser, setLevelUser] = useState(1);
+  const [xp, setXp] = useState(0);
+  const [vcoin, setVcoin] = useState(0);
+
+  useEffect(() => {
+    const userData = JSON.parse(localStorage.getItem("user"));
+    if (userData) {
+      setXp(userData.xp);
+      setVcoin(userData.vcoin);
+      setLevelUser(Math.floor(xp / 100) + 1);
+    }
+  }, []);
   return (
     <>
       <Header>
@@ -84,9 +99,10 @@ function Learn() {
         <TopSection
           section={1}
           sectionName={"Fundamentos"}
-          playerCoins={938}
-          playerLevel={27}
-          playerXP={13_657}
+          playerCoins={vcoin}
+          playerLevel={levelUser}
+          playerXP={xp}
+          progressionBar={(xp / (levelUser * 100)) * 100}
         />
 
         {/* Trail 1 */}

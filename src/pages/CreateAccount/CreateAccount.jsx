@@ -139,7 +139,7 @@ function CreateAccount() {
       password: password,
       gender: "m", // arrumar para pegar o valor do input
       pronoun: pronoum,
-      cep: cep,
+      cep: '00000000', // Exemplo, ajustar a formatação
       birthdate: "1999-01-01", // Exemplo, ajustar a formatação
     };
 

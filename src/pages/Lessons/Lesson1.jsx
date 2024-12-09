@@ -16,6 +16,8 @@ import appleIcon from "../../assets/images/apple-icon.svg";
 import coinIcon from "../../assets/images/coin-icon.svg";
 import moneyIconBig from "../../assets/images/money-icon-big.svg";
 
+import { useNavigate } from "react-router-dom";
+
 const q2correctAnswer = ["escambo", "moeda", "cédula", "cartão", "digital"];
 
 const q2answerAtom = atom(["", "", "", "", ""]);
@@ -79,11 +81,13 @@ function Lesson1(/*{ lives }*/) {
     }
   };
 
+  const navigate = useNavigate();
+
   const handleContinue = () => {
     if (currentPhase < 5) {
       setCurrentPhase((prev) => prev + 1); // Avança para a próxima fase
     } else {
-      open("learn", "_self"); // Redireciona para a página de lições
+      navigate("/learn"); // Redireciona para a página de lições
     }
   };
 

@@ -30,7 +30,7 @@ function NewIncome() {
     };
 
     axios
-      .post("http://localhost:3000/transaction/add", newTransaction)
+      .post("https://backend.vouvi.com.br/transaction/add", newTransaction)
       .then((response) => {
         console.log("Transação salva com sucesso:", response.data);
         clearForm();

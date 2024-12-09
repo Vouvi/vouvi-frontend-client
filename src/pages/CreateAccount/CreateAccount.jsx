@@ -139,13 +139,13 @@ function CreateAccount() {
       password: password,
       gender: "m", // arrumar para pegar o valor do input
       pronoun: pronoum,
-      cep: cep,
+      cep: '00000000', // Exemplo, ajustar a formatação
       birthdate: "1999-01-01", // Exemplo, ajustar a formatação
     };
 
     try {
       const response = await axios.post(
-        "http://localhost:3000/users/register",
+        "https://backend.vouvi.com.br/users/register",
         user,
       );
       console.log("Cadastro realizado com sucesso:", response.data);

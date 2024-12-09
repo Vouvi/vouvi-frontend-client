@@ -15,7 +15,7 @@ function FriendsModal({ closeModal }) {
 
     try {
       const response = await axios.get(
-        `http://localhost:3000/users/${searchTerm}`,
+        `https://backend.vouvi.com.br/users/${searchTerm}`,
       );
       const user = response.data;
 

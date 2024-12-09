@@ -38,14 +38,6 @@ function Planning() {
   const handleClickGraphics = () => setActiveContent("graphics");
   const handleClickGoals = () => setActiveContent("goals");
 
-  const [transactions, setTransactions] = useState([]);
-  useEffect(() => {
-    axios
-      .get("http://localhost:3000/transaction")
-      .then((response) => setTransactions(response.data))
-      .catch((error) => console.error("Erro ao buscar conquistas:", error));
-  }, []);
-
   return (
     <>
       <NewIncome />

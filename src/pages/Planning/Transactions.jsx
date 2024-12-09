@@ -32,14 +32,14 @@ function Transactions() {
   const [transactions, setTransactions] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:3000/transaction')
+    axios.get('https://backend.vouvi.com.br/transaction')
       .then(response => {
         // Ordena as transações por data, mais recentes primeiro
         const sortedTransactions = response.data.sort((a, b) => new Date(b.date) - new Date(a.date));
         setTransactions(sortedTransactions);
       })
       .catch(error => console.error('Erro ao buscar transações:', error));
-  }, []);
+  }, [transactions]);
 
   
   
@@ -49,7 +49,7 @@ function Transactions() {
   return (
     <div className="mt-10 flex w-full flex-col justify-between md:flex-row dark:text-white">
       <div className="rounded-md bg-[#888] bg-opacity-20 p-6 sm:w-full md:w-7/12 dark:bg-[#1B1B1B]">
-        <h3 className="w-fit rounded-xl bg-primary-200 p-2 text-[18px] font-semibold text-white sm:text-[3vw] md:text-[26px] lg:text-md dark:bg-black">
+        <h3 className="w-fit rounded-xl bg-primary-200 p-3 font-semibold text-white sm:text-[3vw] md:text-[26px] lg:text-[32px] dark:bg-black py-1">
           Transações
         </h3>
 
@@ -80,46 +80,45 @@ function Transactions() {
         </ul>
       </div>
 
-      <div className="relative mt-5 flex flex-col items-center rounded-md bg-[#888] bg-opacity-20 p-6 sm:w-full md:mt-0 md:w-2/5 dark:bg-[#1B1B1B]">
-        <h3 className="text-[28px] xs:text-[32px] sm:text-base md:text-base lg:text-lg">
+      <div className="relative mt-5 flex flex-col rounded-md bg-[#888] bg-opacity-20 p-1 sm:w-full md:mt-0 md:w-2/5 dark:bg-[#1B1B1B] pb-10">
+        <h3 className="xl:m-8 lg:m-6 m-5 lg:text-nowrap font-medium 2xl:text-[32px] xl:text-base lg:text-[30px] md:text-[28px] sm:text-[3vw] text-[20px] text-white bg-primary-200  dark:bg-black w-fit p-4 py-3 rounded-2xl">
           Desempenho Financeiro
         </h3>
-        <PieChart
-          series={[
-            {
-              data: [
-                { id: 0, value: 50, color: "#480ca8" },
-                { id: 1, value: 15, color: "#560bad" },
-                { id: 2, value: 15, color: "#7209b7" },
-                { id: 3, value: 20, color: "#b5179E" },
-              ],
-
-              innerRadius:
-                window.innerWidth > 768 && window.innerWidth < 1024 ? 100 : 150,
-              outerRadius:
-                window.innerWidth > 768 && window.innerWidth < 1024 ? 120 : 180,
-              cornerRadius: 35,
-              startAngle: -90,
-              endAngle: 90,
-              paddingAngle: 3,
-            },
-          ]}
-          margin={{ top: 150, right: 0, bottom: 0, left: 0 }}
-          width={600}
-          height={300}
-        />
-
-        <span className="absolute top-1/2 text-lg md:top-[55%] md:text-lg lg:top-1/2 lg:text-xl">
-          {performance}%
-        </span>
-
-        <button
-          tabIndex="0"
-          onClick={() => showModal("financial-performance")}
-          className="w-full rounded-md border-4 border-black py-3 text-md md:w-3/5 md:text-[20px] lg:w-4/6 dark:border-white"
-        >
-          Saiba Mais
-        </button>
+        <div className="flex flex-col items-center">
+          <PieChart
+            series={[
+              {
+                data: [
+                  { id: 0, value: 50, color: "#480ca8" },
+                  { id: 1, value: 15, color: "#560bad" },
+                  { id: 2, value: 15, color: "#7209b7" },
+                  { id: 3, value: 20, color: "#b5179E" },
+                ],
+                innerRadius:
+                  window.innerWidth > 768 && window.innerWidth < 1024 ? 100 : 150,
+                outerRadius:
+                  window.innerWidth > 768 && window.innerWidth < 1024 ? 120 : 180,
+                cornerRadius: 35,
+                startAngle: -90,
+                endAngle: 90,
+                paddingAngle: 3,
+              },
+            ]}
+            margin={{ top: 150, right: 0, bottom: 0, left: 0 }}
+            width={600}
+            height={300}
+          />
+          <span className="absolute top-1/2 text-lg md:top-[55%] md:text-lg lg:top-1/2 lg:text-xl">
+            {performance}%
+          </span>
+          <button
+            tabIndex="0"
+            onClick={() => showModal("financial-performance")}
+            className="w-full rounded-md border-4 border-black py-3 text-md md:w-3/5 md:text-[20px] lg:w-4/6 dark:border-white"
+          >
+            Saiba Mais
+          </button>
+        </div>
       </div>
     </div>
   );

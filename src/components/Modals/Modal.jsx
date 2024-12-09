@@ -21,6 +21,8 @@ function Modal({
   iconColor,
   iconWidth,
   top,
+  hide,
+  perfom,
 }) {
   return (
     // Background
@@ -29,7 +31,7 @@ function Modal({
       id={id}
     >
       {/* Modal container */}
-      <div className="h-fit w-fit min-w-80 max-w-[70vw] rounded-md bg-white lg:p-9 md:p-5 p-2 text-md text-black shadow-lg shadow-black/50 dark:bg-[#1B1B1B] dark:text-white">
+      <div className={`h-fit w-fit min-w-80 max-w-[70vw] rounded-md bg-white lg:p-9 md:p-5 p-2 text-md text-black shadow-lg shadow-black/50 dark:bg-[#1B1B1B] dark:text-white ${perfom}`}>
         {/* Modal heading */}
         <div className="flex justify-between">
           <span className="flex items-center gap-4">
@@ -43,7 +45,7 @@ function Modal({
           <button className="cursor-pointer">
             <Icon
               onClick={() => hideModal(id)}
-              className="relative right-[1px] cursor-pointer text-black opacity-35 dark:text-white"
+              className={`relative right-[1px] cursor-pointer text-black opacity-35 dark:text-white ${hide}`}
               icon="carbon:close-filled"
               width="3rem"
             />
@@ -66,6 +68,8 @@ Modal.propTypes = {
   top: PropTypes.bool,
   iconColor: PropTypes.string,
   iconWidth: PropTypes.number,
+  hide: PropTypes.string,
+  perfom: PropTypes.string,
 };
 
 export default Modal;

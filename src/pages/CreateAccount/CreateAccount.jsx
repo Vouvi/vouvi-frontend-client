@@ -139,8 +139,10 @@ function CreateAccount() {
       password: password,
       gender: "m", // arrumar para pegar o valor do input
       pronoun: pronoum,
-      cep: '00000000', // Exemplo, ajustar a formatação
-      birthdate: "1999-01-01", // Exemplo, ajustar a formatação
+      cep: "00000000", // Exemplo, ajustar a formatação
+      birthdate: `${year}-${month.toString().padStart(2, "0")}-${day
+        .toString()
+        .padStart(2, "0")}`, // Exemplo, ajustar a formatação
     };
 
     try {
@@ -158,7 +160,7 @@ function CreateAccount() {
   };
 
   return (
-    <div className="flex items-center justify-center h-screen w-auto">
+    <div className="flex h-screen w-auto items-center justify-center">
       <video
         src={bgVideo}
         className="fixed left-0 top-0 -z-10 h-[1080px] w-full object-cover opacity-100"
@@ -168,10 +170,10 @@ function CreateAccount() {
         id="bg-video"
       ></video>
 
-      <div className="flex flex-col items-center ">
-        <div className="flex justify-center itens-center w-[170px] mb-[30px] mt-[10px] align-center ">
-            <img src="src/assets/images/logo-vouvi-branco1.svg" alt="" />
-          </div>
+      <div className="flex flex-col items-center">
+        <div className="itens-center align-center mb-[30px] mt-[10px] flex w-[170px] justify-center">
+          <img src="src/assets/images/logo-vouvi-branco1.svg" alt="" />
+        </div>
         <form
           className="flex h-full w-[350px] flex-col justify-around gap-4 rounded-sm bg-white bg-opacity-90 p-10 sm:w-[600px]"
           action=""
@@ -184,8 +186,8 @@ function CreateAccount() {
           {/* Exibe erro, se houver */}
           {error && <p className="text-red-500 text-center">{error}</p>}
         </form>
-            </div>
       </div>
+    </div>
   );
 }
 

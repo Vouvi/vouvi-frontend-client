@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import hideModal from "../../utils/hideModal";
 
 const colors = {
-  primary: "text-primary",
+  primary: "text-primary-200",
   secondary: "text-secondary",
   red: "text-[#FF0000]",
   green: "text-[#00FF00]",

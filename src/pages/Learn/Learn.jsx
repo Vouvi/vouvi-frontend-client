@@ -12,6 +12,9 @@ import { useState, useEffect } from "react";
 import trailImage1Dark from "../../assets/images/learning-trail-1-dark-test.svg";
 import trailImage2Dark from "../../assets/images/learning-trail-2-dark.svg";
 import trailImage3Dark from "../../assets/images/learning-trail-3-dark.svg";
+import trailImage4Dark from "../../assets/images/learning-trail-4-dark.svg";
+import trailImage5Dark from "../../assets/images/learning-trail-5-dark.svg";
+import trailImage6Dark from "../../assets/images/learning-trail-6-dark.svg";
 
 function Learn() {
   const stages = [
@@ -171,6 +174,9 @@ function Learn() {
 
             <img src={trailImage2Dark} alt="trilha 2" />
             <img src={trailImage3Dark} alt="trilha 3" />
+            <img src={trailImage4Dark} alt="trilha 4" />
+            <img src={trailImage5Dark} alt="trilha 5" />
+            <img src={trailImage6Dark} alt="trilha 6" />
           </Slider>
         </div>
 

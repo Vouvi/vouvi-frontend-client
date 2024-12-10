@@ -250,7 +250,7 @@ function Low() {
         </div>
       </section>
 
-      <section data-aos="fade-up" className="m-auto lg:w-8/1 mb-[800px] mt-[320px] mx-px-[500px]">
+      <section data-aos="fade-up" className="m-auto lg:w-8/1 mb-[500px] mt-[320px] mx-px-[500px]">
         <p
           className={`${TextGradient} mb-16 mt-28 text-center text-[24px] font-light md:mt-[200px] md:text-[28px] lg:text-base`}
         >

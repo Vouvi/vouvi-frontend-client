@@ -78,8 +78,11 @@ function Learn() {
         />
 
         {/* Trail 1 */}
-        <div className="relative h-full w-full">
-          <Slider infinite={false}>
+        <div className="relative flex h-full w-full items-center justify-center">
+          <Slider
+            infinite={false}
+            className="top-56 min-w-[600px] rotate-90 lg:top-0 lg:rotate-0"
+          >
             <Trail stages={stages} bg={trailImage1Dark} />
 
             <img src={trailImage2Dark} alt="trilha 2" />
@@ -104,7 +107,7 @@ function Learn() {
 
 function LifeMeter({ lives = 3 }) {
   return (
-    <div className="absolute bottom-5 left-10 flex h-fit w-fit gap-2 rounded-sm bg-secondary-200/20 p-3">
+    <div className="absolute bottom-20 left-10 flex h-fit w-fit gap-2 rounded-sm bg-secondary-200/20 p-3 lg:bottom-5">
       <Icon
         icon={"mdi:thunder"}
         width={48}

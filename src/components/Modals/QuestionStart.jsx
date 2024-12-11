@@ -1,7 +1,7 @@
-import hideModal from "../../utils/hideModal";
 import Modal from "./Modal";
 import MoneyHistory from "../../assets/images/money-history.svg";
 import { Icon } from "@iconify/react";
+import { Link } from "react-router-dom";
 
 function FinancialPerformance() {
   return (
@@ -39,9 +39,11 @@ function FinancialPerformance() {
         </div>
       </div>
       <div className="flex justify-end">
-        <p className="w-fit cursor-pointer rounded-sm bg-primary-200 p-3 px-10 text-[28px] font-medium text-white transition-colors duration-300 hover:bg-secondary-200 hover:text-secondary-400">
-          Iniciar atividade
-        </p>
+        <Link to={"/lesson-1"}>
+          <p className="w-fit cursor-pointer rounded-sm bg-primary-200 p-3 px-10 text-[28px] font-medium text-white transition-colors duration-300 hover:bg-secondary-200 hover:text-secondary-400">
+            Iniciar atividade
+          </p>
+        </Link>
       </div>
     </Modal>
   );

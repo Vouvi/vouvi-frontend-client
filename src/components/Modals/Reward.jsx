@@ -1,8 +1,8 @@
-import hideModal from "../../utils/hideModal";
 import Modal from "./Modal";
 import Newbie from "../../assets/images/newbie-insigne.svg";
 import InsigneModalCard from "../Cards/InsigneModalCard";
 import Vcoin from "../../assets/images/vcoins-icon.svg";
+import { Link } from "react-router-dom";
 
 function FinancialPerformance() {
   return (
@@ -35,9 +35,11 @@ function FinancialPerformance() {
           />
         </div>
         <div>
-          <p className="cursor-pointer rounded-md bg-primary-200 p-5 px-20 text-base font-medium transition-colors duration-300 hover:bg-primary-300">
-            Próxima aula
-          </p>
+          <Link to={"/learn"}>
+            <p className="cursor-pointer rounded-md bg-primary-200 p-5 px-20 text-base font-medium transition-colors duration-300 hover:bg-primary-300">
+              Próxima aula
+            </p>
+          </Link>
         </div>
       </div>
     </Modal>

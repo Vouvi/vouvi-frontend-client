@@ -7,6 +7,7 @@ import HeaderMobile from "../../components/Header/HeaderMobile";
 import TopSection from "../../components/Learn/TopSection";
 import AvatarBasic from "../../components/Header/AvatarBasic";
 import Trail from "./Trail";
+import QuestionStart from "../../components/Modals/QuestionStart";
 
 import { useState, useEffect } from "react";
 import trailImage1Dark from "../../assets/images/learning-trail-1-dark.svg";
@@ -59,6 +60,7 @@ function Learn() {
   }, [xp]);
   return (
     <>
+      <QuestionStart />
       <Header iconActiveNumber={0}>
         <AvatarBasic />
       </Header>

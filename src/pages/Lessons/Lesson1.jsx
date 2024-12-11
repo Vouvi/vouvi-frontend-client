@@ -8,7 +8,6 @@ import apple from "../../assets/images/learn-question-apple.svg";
 import smarthphone from "../../assets/images/learn-question-smartphone.svg";
 import coin from "../../assets/images/learn-question-coin.svg";
 import card from "../../assets/images/learn-question-card.svg";
-
 import moneyIcon from "../../assets/images/money-icon.svg";
 import smartphoneIcon from "../../assets/images/smartphone-icon.svg";
 import cardIcon from "../../assets/images/card-icon.svg";
@@ -17,6 +16,9 @@ import coinIcon from "../../assets/images/coin-icon.svg";
 import moneyIconBig from "../../assets/images/money-icon-big.svg";
 
 import { useNavigate } from "react-router-dom";
+import showModal from "../../utils/showModal";
+
+import Reward from "../../components/Modals/Reward";
 
 const q2correctAnswer = ["escambo", "moeda", "cédula", "cartão", "digital"];
 
@@ -87,7 +89,7 @@ function Lesson1(/*{ lives }*/) {
     if (currentPhase < 5) {
       setCurrentPhase((prev) => prev + 1); // Avança para a próxima fase
     } else {
-      navigate("/learn"); // Redireciona para a página de lições
+      showModal("reward"); // Redireciona para a página de lições
     }
   };
 
@@ -95,6 +97,7 @@ function Lesson1(/*{ lives }*/) {
 
   return (
     <main className="mx-20 mt-5 dark:text-white">
+      <Reward />
       {isCheerVisible && (
         <FinCheer
           title={"Olha só quem tá arrasando!"}

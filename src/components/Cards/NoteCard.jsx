@@ -4,13 +4,7 @@ import PropTypes from "prop-types";
 function NoteCard({ title, content }) {
   let cutContent;
 
-  if (window.innerWidth < 400) {
-    if (content.length > 100) {
-      cutContent = content.slice(0, 100) + "...";
-    }
-  } else {
-    cutContent = content.slice(0, 130) + "...";
-  }
+  cutContent = content.slice(0, 25) + "...";
 
   return (
     <div
@@ -29,7 +23,7 @@ function NoteCard({ title, content }) {
         />
       </div>
 
-      <p className="text-[16px] xs:text-sm md:text-md">{cutContent}</p>
+      <p className="text-[16px] xs:text-sm md:text-md text-wrap max-w-full">{content.length > 50 ? cutContent : content}</p>
     </div>
   );
 }

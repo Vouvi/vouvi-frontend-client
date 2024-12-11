@@ -1,6 +1,7 @@
 import PasswordInput from "../../components/Forms/PasswordInput";
 import KeepConected from "../../components/Forms/Radio";
 import bgVideo from "../../assets/videos/video_do_login.mp4";
+import vouvi from "../../assets/images/logo-vouvi-branco1.svg";
 
 import axios from "axios";
 
@@ -62,7 +63,7 @@ function Form() {
         <div className="align-center mt-5 flex h-[100px] w-[300px] justify-center sm:h-[850px] md:h-[750px]">
           <div className="flex flex-col items-center">
             <div className="itens-center align-center mb-[30px] mt-[50px] flex w-[170px] justify-center">
-              <img src="src/assets/images/logo-vouvi-branco1.svg" alt="" />
+              <img src={vouvi} alt="" />
             </div>
             <form
               className="flex w-[350px] flex-col items-center justify-around gap-4 rounded-sm bg-white bg-opacity-90 p-10 sm:w-[680px] lg:w-[600px]"

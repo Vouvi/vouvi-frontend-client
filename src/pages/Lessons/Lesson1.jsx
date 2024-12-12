@@ -347,7 +347,7 @@ function Question2() {
         );
       case "digital":
         return (
-          <button onClick={() => console.log("Hello")}>
+          <button onClick={() => handleRemoveAnwswer("digital")}>
             <img src={smartphoneIcon} alt="ícone de celular" />
           </button>
         );

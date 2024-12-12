@@ -26,7 +26,7 @@ function Top({ background }) {
         {/* Background */}
         <div className="absolute top-0 left-0 -z-10 w-full overflow-hidden">
           <video
-            className="h-screen lg:min-h-full object-cover opacity-[0.25] blur-[2px] dark:blur-0"
+            className="h-screen lg:h-auto lg:min-h-full object-cover opacity-[0.25] blur-[2px] dark:blur-0"
             src={background}
             autoPlay
             muted

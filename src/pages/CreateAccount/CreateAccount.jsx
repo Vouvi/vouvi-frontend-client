@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 
 // Import components
 import CreateAccountStep1 from "./CreateAccountStep1";
@@ -54,11 +53,6 @@ function CreateAccount() {
     setAge(date.getUTCFullYear() - year);
   }, [day, month, year]);
 
-  useEffect(() => {
-    if (step === 5) {
-      handleSubmit(); // Envia automaticamente o formulário quando chegar no step 5
-    }
-  }, [step]);
 
   const verifyStep = () => {
     switch (step) {
@@ -129,35 +123,6 @@ function CreateAccount() {
     document.getElementById("bg-video").play();
   });
 
-  const [error, setError] = useState("");
-  const handleSubmit = async () => {
-    const user = {
-      username: username,
-      name: name,
-      lastname: lastName,
-      email: email,
-      password: password,
-      gender: "m", // arrumar para pegar o valor do input
-      pronoun: pronoum,
-      cep: "00000000", // Exemplo, ajustar a formatação
-      birthdate: `${year}-${month.toString().padStart(2, "0")}-${day
-        .toString()
-        .padStart(2, "0")}`, // Exemplo, ajustar a formatação
-    };
-
-    try {
-      const response = await axios.post(
-        "https://backend.vouvi.com.br/users/register",
-        user,
-      );
-      console.log("Cadastro realizado com sucesso:", response.data);
-      localStorage.setItem("user", JSON.stringify(response.data));
-    } catch (err) {
-      setError(
-        "Erro no cadastro: " + (err.response?.data || "Erro desconhecido"),
-      );
-    }
-  };
 
   return (
     <div className="flex h-screen w-auto items-center justify-center">
@@ -184,7 +149,6 @@ function CreateAccount() {
           {/* Exibe os passos do formulário */}
           {verifyStep()}
           {/* Exibe erro, se houver */}
-          {error && <p className="text-red-500 text-center">{error}</p>}
         </form>
       </div>
     </div>

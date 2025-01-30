@@ -3,8 +3,6 @@ import KeepConected from "../../components/Forms/Radio";
 import bgVideo from "../../assets/videos/video_do_login.mp4";
 import vouvi from "../../assets/images/logo-vouvi-branco1.svg";
 
-import axios from "axios";
-
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
@@ -14,40 +12,6 @@ function Form() {
   useEffect(() => {
     document.getElementById("bg-video").play();
   });
-
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-  const navigate = useNavigate(); // Usando o useNavigate para redirecionar após login bem-sucedido
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setError(""); // Limpa qualquer erro anterior
-
-    try {
-      const response = await axios.post("https://backend.vouvi.com.br/users/login", {
-        email: email,
-        password: password,
-      });
-
-      if (response.data) {
-        localStorage.setItem("user", JSON.stringify(response.data)); // Armazenando no localStorage como exemplo
-        console.log("Usuário autenticado:", response.data);
-
-        // Redireciona para a página de perfil após login bem-sucedido
-        navigate("/profile");
-      }
-    } catch (err) {
-      // Verifica se há uma resposta do servidor, caso contrário, trata o erro de conexão
-      if (err.response) {
-        setError("Login falhou: email ou senha inválidos.");
-      } else {
-        setError(
-          "Erro ao conectar com o servidor. Tente novamente mais tarde.",
-        );
-      }
-    }
-  };
 
   return (
     <>
@@ -68,7 +32,7 @@ function Form() {
             <form
               className="flex w-[350px] flex-col items-center justify-around gap-4 rounded-sm bg-white bg-opacity-90 p-10 sm:w-[680px] lg:w-[600px]"
               action=""
-              onSubmit={handleSubmit}
+
             >
               <h1 className="w-full text-center text-[30px] font-bold sm:text-lg">
                 Bem-vindo de volta!
@@ -86,8 +50,6 @@ function Form() {
                   name="email"
                   id="email"
                   autoComplete="on"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
                   required
                 />
                 <label className="w-full text-[24px] font-light sm:text-base">
@@ -95,11 +57,8 @@ function Form() {
                 </label>
                 <PasswordInput
                   id="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
                 />
 
-                {error}
                 <KeepConected />
               </div>
               <div className="flex w-full items-center justify-center">

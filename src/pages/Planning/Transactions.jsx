@@ -57,28 +57,28 @@ function Transactions() {
             value={1000}
             type="Débito"
             date="10/10/2021"
-            iconSrc="bx:bxs-home"
+            iconSrc="carbon:money"
           />
           <DailyTransaction
             description="Aluguel"
             value={1000}
             type="Débito"
             date="10/10/2021"
-            iconSrc="bx:bxs-home"
+            iconSrc="carbon:money"
+          />
+          <DailyTransaction
+            description="Aluguel"
+            value={1000}
+            type="Débito"
+            iconSrc="carbon:money"
+            date="10/10/2021"
           />
           <DailyTransaction
             description="Aluguel"
             value={1000}
             type="Débito"
             date="10/10/2021"
-            iconSrc="bx:bxs-home"
-          />
-          <DailyTransaction
-            description="Aluguel"
-            value={1000}
-            type="Débito"
-            date="10/10/2021"
-            iconSrc="bx:bxs-home"
+            iconSrc="carbon:money"
           />
           
         </ul>

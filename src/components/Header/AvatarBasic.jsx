@@ -5,14 +5,7 @@ import { Link } from "react-router-dom";
 function AvatarBasic({ width }) {
   const [userName, setUserName] = useState(null);
 
-  useEffect(() => {
-    const userData = JSON.parse(localStorage.getItem("user"));
-    if (userData) {
-      setUserName(userData.username);
-    } else {
-      setUserName("Error");
-    }
-  }, []);
+
 
   return (
     <Link to={'/profile'}>
@@ -20,7 +13,7 @@ function AvatarBasic({ width }) {
         <div className={`flex items-center`}>
           <div className="mr-3 hidden flex-col leading-[1.1] lg:flex">
             <h1 className="text-right font-medium text-black lg:text-[22px] xl:text-[25px] 2xl:text-[32px] dark:text-white">
-              {userName}
+              {"userName"}
             </h1>
           </div>
           <img

@@ -9,23 +9,13 @@ function AvatarFull() {
   const [userName, setUserName] = useState(null);
   const [xp, setXp] = useState(0);
   const [vcoins, setVcoins] = useState(0);
-  useEffect(() => {
-    const userData = JSON.parse(localStorage.getItem("user"));
-    if (userData) {
-      setUserName(userData.username);
-      setXp(userData.xp);
-      setVcoins(userData.vcoin);
-    } else {
-      setUserName("Error");
-    }
-  }, []);
 
   return (
     <Link to="/profile">
       <div className="flex cursor-pointer items-center rounded-[60px] transition-colors duration-300 hover:bg-[#222222]/10 lg:p-[5px_11px_5px_14px] xl:p-[6px_13px_6px_16px] 2xl:p-[8px_16px_8px_20px] hover:dark:bg-[#222222]">
         <div className="mr-3 flex flex-col lg:leading-[0.9] 2xl:leading-[1.1]">
           <h1 className="text-right font-medium text-black lg:text-[22px] xl:text-[25px] 2xl:text-[32px] dark:text-white">
-            {userName}
+            {"userName"}
           </h1>
           {/* Gambiarra dos infernos */}
           <div className="flex items-center text-black lg:text-[17px] xl:text-[19px] 2xl:text-[24px] dark:text-white">

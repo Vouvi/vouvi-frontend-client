@@ -50,14 +50,6 @@ function Learn() {
   const [xp, setXp] = useState(0);
   const [vcoin, setVcoin] = useState(0);
 
-  useEffect(() => {
-    const userData = JSON.parse(localStorage.getItem("user"));
-    if (userData) {
-      setXp(userData.xp);
-      setVcoin(userData.vcoin);
-      setLevelUser(Math.floor(xp / 100) + 1);
-    }
-  }, [xp]);
   return (
     <>
       <QuestionStart />

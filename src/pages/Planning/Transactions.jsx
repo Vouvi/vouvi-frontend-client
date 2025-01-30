@@ -28,21 +28,6 @@ function DailyTransaction({ description, value, type, date, iconSrc }) {
 }
 
 function Transactions() {
-
-  const [transactions, setTransactions] = useState([]);
-
-  useEffect(() => {
-    axios.get('https://backend.vouvi.com.br/transaction')
-      .then(response => {
-        // Ordena as transações por data, mais recentes primeiro
-        const sortedTransactions = response.data.sort((a, b) => new Date(b.date) - new Date(a.date));
-        setTransactions(sortedTransactions);
-      })
-      .catch(error => console.error('Erro ao buscar transações:', error));
-  }, [transactions]);
-
-  
-  
   
   const performance = 88;
 
@@ -67,16 +52,35 @@ function Transactions() {
             <span className="w-1/4 p-4 text-center font-bold">Data</span>
           </li>
 
-          {transactions.map((transaction) => (
-            <DailyTransaction
-              key={transaction.id}
-              description={transaction.title}
-              value={transaction.value}
-              type={transaction.type}
-              date={new Date(transaction.date).toLocaleDateString('pt-BR')}
-              iconSrc="carbon:money"
-            />
-          ))}
+          <DailyTransaction
+            description="Aluguel"
+            value={1000}
+            type="Débito"
+            date="10/10/2021"
+            iconSrc="bx:bxs-home"
+          />
+          <DailyTransaction
+            description="Aluguel"
+            value={1000}
+            type="Débito"
+            date="10/10/2021"
+            iconSrc="bx:bxs-home"
+          />
+          <DailyTransaction
+            description="Aluguel"
+            value={1000}
+            type="Débito"
+            date="10/10/2021"
+            iconSrc="bx:bxs-home"
+          />
+          <DailyTransaction
+            description="Aluguel"
+            value={1000}
+            type="Débito"
+            date="10/10/2021"
+            iconSrc="bx:bxs-home"
+          />
+          
         </ul>
       </div>
 

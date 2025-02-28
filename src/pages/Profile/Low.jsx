@@ -17,7 +17,7 @@ function Low({ friends, openModal, openModal2 }) {
             <p className="mx-1">Adicionar amigo</p>
           </div>
         </div>
-        <div className="h-[37vh]">
+        <div className="h-full">
           <Friends
             icon={"red"}
             name={"Débora paixão"}

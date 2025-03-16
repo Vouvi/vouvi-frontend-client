@@ -11,12 +11,12 @@ import InsigneModal from "../../components/Modals/InsigneModal";
 import FriendsModal from "../../components/Modals/FriendsModal";
 import FriendsAddModal from "../../components/Modals/FriendAddModal";
 
-import { useState} from "react";
+import { useState } from "react";
+import { useEffect } from "react";
 
 import HeaderMobile from "../../components/Header/HeaderMobile";
 
 function Profile() {
-
   const [darkMode, setDarkMode] = useState(
     document.body.classList.contains("dark"),
   );
@@ -24,6 +24,10 @@ function Profile() {
 
   const openModal = (modalType) => setActiveModal(modalType);
   const closeModal = () => setActiveModal(null);
+
+  useEffect(() => {
+    openModal("settings");
+  }, []);
 
   return (
     <>
@@ -35,12 +39,12 @@ function Profile() {
         <Settings openModal={() => openModal("settings")} />
       </HeaderIntern>
       <Top
-        userName={'João'}
-        levelUser={'2'}
+        userName={"João"}
+        levelUser={"2"}
         xpLeft={100}
         progressionbar={((50 % 100) / 100) * 100}
         vcoin={280}
-        achievements={'15'+"/20"}
+        achievements={"15" + "/20"}
       />
       <Mid openModal={() => openModal("insigne")} />
       <Low
@@ -60,7 +64,7 @@ function Profile() {
       {activeModal === "friendsAdd" && (
         <FriendsAddModal closeModal={closeModal} />
       )}
-      <HeaderMobile iconId={4} />
+      <HeaderMobile iconId={4} openModal={() => openModal('settings')}/>
     </>
   );
 }

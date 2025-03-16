@@ -109,7 +109,7 @@ function Transactions() {
               },
             ]}
             margin={{ top: 150, right: 0, bottom: 0, left: 0 }}
-            width={600}
+            width={360}
             height={300}
           />
           <span className="absolute top-1/2 text-lg md:top-[55%] md:text-lg lg:top-1/2 lg:text-xl">

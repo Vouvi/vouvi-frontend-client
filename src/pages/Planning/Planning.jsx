@@ -1,7 +1,5 @@
 import { useState } from "react";
 
-import { useEffect } from "react";
-
 import HeaderMobile from "../../components/Header/HeaderMobile";
 import HeaderIntern from "../../components/Header/HeaderIntern";
 import AvatarFull from "../../components/Header/AvatarFull";
